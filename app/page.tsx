@@ -1,14 +1,40 @@
-import React from "react";
-import PopularCity from "../components/popularCities";
+'use client';
 
+import React, { useEffect, useState } from "react";
+import PopularCity from "../components/popularCities";
+import Link from "next/link";
 export default function HomePage() {
+ 
+   const [user, setUser] = useState<any>(null);
+ 
+  
+
+ useEffect(() => {
+  if (typeof window !== "undefined") {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
+    // Listen for localStorage changes 
+    const handleStorageChange = () => {
+      const updatedUser = localStorage.getItem("user");
+      setUser(updatedUser ? JSON.parse(updatedUser) : null);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }
+}, []);
+
   return (
     <div>
       {/* Hero Section */}
      <section
   className="bg-cover bg-center bg-no-repeat py-16 text-center"
-  style={{ backgroundImage: "url('/images/Frame 2.jpg')" }}
->
+  style={{ backgroundImage: "url('/images/Frame 2.jpg')" }}>
         <h1 className="text-3xl font-bold text-slate-900">Reconnect With Moments</h1>
         <p className="text-slate-700 mt-2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -23,6 +49,10 @@ export default function HomePage() {
         </div>
         <p className="text-sm text-slate-500 mt-2">Auto-detect</p>
       </section>
+      
+     <Link href="/collective-wall">
+          View all Posts</Link>
+
 
       {/* Popular City Section */}
       <PopularCity />

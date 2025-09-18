@@ -8,7 +8,7 @@ interface CityDropdownProps {
 }
 
 const popularCities = [
-  { name: "Delhi", icon: "/images/delhi.png" },
+  { name: "Delhi", icon: "/images/india-gate.png" },
   { name: "Jaipur", icon: "/images/jaipur.png" },
   { name: "Agra", icon: "/images/agra.png" },
   { name: "Mumbai", icon: "/images/mumbai.png" },
@@ -86,6 +86,7 @@ const CityDropdown: React.FC<CityDropdownProps> = ({
           ) : (
             <>
               {/* Popular Cities */}
+              
               <div className="text-teal-500 font-medium mb-2">Popular Cities</div>
               <div className="grid grid-cols-4 gap-2 mb-4">
                 {popularCities.map((city) => (
