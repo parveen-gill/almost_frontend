@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PostCard from "./Postcard";
 import { FiChevronDown } from "react-icons/fi";
+import Link from "next/link";
 
 interface Post {
   id: number;
@@ -9,6 +10,7 @@ interface Post {
   preview: string;
   city: string;
   time: string;
+  slug: string;
 }
 
 interface PostSectionProps {
@@ -35,9 +37,15 @@ const PostSection: React.FC<PostSectionProps> = ({ dateLabel, posts }) => {
       {/* Posts */}
       {open && (
         <div className="shadow-lg mt-2 bg-white p-4 rounded-lg">
-          {posts.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
+          {posts.map((post) => {
+  console.log("Rendering post:", post); 
+  return (
+    <Link key={post.id} href={`/post/${post.slug}`}>
+      <PostCard {...post} />
+    </Link>
+  );
+})}
+
         </div>
       )}
     </div>

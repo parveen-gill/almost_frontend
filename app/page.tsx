@@ -50,8 +50,15 @@ export default function HomePage() {
         <p className="text-sm text-slate-500 mt-2">Auto-detect</p>
       </section>
       
-     <Link href="/collective-wall">
-          View all Posts</Link>
+       <div className="mt-8 flex justify-center">
+          <Link href="/collective-wall">
+            <button className="px-6 py-3 text-white rounded-full hover:bg-[#007d80] transition text-lg font-medium " style={{
+    background: "linear-gradient(135deg, #00A5AA, #EDF6F9)"
+  }}>
+              View All Posts
+            </button>
+          </Link>
+        </div>
 
 
       {/* Popular City Section */}
